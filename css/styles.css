@@ -1,0 +1,560 @@
+/* ==========================================================================
+   WaitWise MVP - Stylesheet
+   Faithfully recreates the Figma wireframe design with clean typography,
+   precise spacing, and responsive behavior for mobile and desktop.
+   ========================================================================== */
+
+:root {
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Color Palette strictly matching Figma Wireframes */
+  --bg-app: #ffffff;
+  --bg-body-desktop: #f4f5f7;
+  --bg-card: #ffffff;
+  --bg-gray-box: #f5f5f5;
+  --bg-input: #f4f4f4;
+  --bg-button-primary: #dedede;
+  --bg-button-primary-hover: #d3d3d3;
+  --bg-button-secondary: #ffffff;
+  --bg-button-secondary-hover: #f7f7f7;
+  
+  --text-main: #111111;
+  --text-secondary: #555555;
+  --text-muted: #737373;
+  
+  --border-light: #e5e5e5;
+  --border-card: #cccccc;
+  --border-button-primary: #d0d0d0;
+  --border-button-secondary: #999999;
+  
+  /* Demonstration Badge */
+  --demo-badge-bg: #fff9e6;
+  --demo-badge-border: #f0d588;
+  --demo-badge-text: #7a5200;
+
+  --radius-box: 2px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-app);
+  font-family: var(--font-family);
+  color: var(--text-main);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* --------------------------------------------------------------------------
+   App Container (Mobile-first, desktop framed)
+   -------------------------------------------------------------------------- */
+.app-container {
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  background-color: var(--bg-app);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media (min-width: 600px) {
+  body {
+    background-color: var(--bg-body-desktop);
+    padding: 24px 16px;
+  }
+  .app-container {
+    min-height: 800px;
+    border-radius: 6px;
+    border: 1px solid #d8d8d8;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Header Bar
+   -------------------------------------------------------------------------- */
+.app-header {
+  height: 58px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--border-light);
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.brand-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  text-decoration: none;
+  cursor: pointer;
+  letter-spacing: -0.2px;
+}
+
+/* Clear Sample Data Demonstration Notice */
+.demo-banner {
+  background-color: var(--demo-badge-bg);
+  border-bottom: 1px solid var(--demo-badge-border);
+  color: var(--demo-badge-text);
+  padding: 5px 14px;
+  font-size: 11.5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.demo-banner span.tag {
+  background-color: rgba(122, 82, 0, 0.12);
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   Screen Views
+   -------------------------------------------------------------------------- */
+.screen {
+  display: none;
+  padding: 22px 18px 28px;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* --------------------------------------------------------------------------
+   Headings & Text
+   -------------------------------------------------------------------------- */
+.screen-title {
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.4px;
+  margin-bottom: 8px;
+}
+
+.screen-subtitle {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+
+.section-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.results-badge {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.sub-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.body-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.info-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-top: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   Form Inputs & Search
+   -------------------------------------------------------------------------- */
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 36px 12px 14px;
+  font-size: 14.5px;
+  font-family: inherit;
+  color: var(--text-main);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-box);
+  outline: none;
+}
+
+.search-input:focus {
+  background-color: #ffffff;
+  border-color: #777777;
+}
+
+.search-input::placeholder {
+  color: #666666;
+}
+
+.btn-input-clear {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 15px;
+  color: #888888;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+.btn-input-clear:hover {
+  color: #111111;
+}
+
+/* Quick Locality Filter Chips */
+.quick-locality-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.chips-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-right: 2px;
+}
+
+.locality-chip {
+  background-color: #f0f0f0;
+  border: 1px solid #d4d4d4;
+  color: #333333;
+  font-size: 12px;
+  font-family: inherit;
+  padding: 4px 9px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.locality-chip:hover, .locality-chip.active {
+  background-color: #e2e2e2;
+  border-color: #999999;
+  color: #111111;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 13px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  text-align: center;
+  border-radius: var(--radius-box);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.1s;
+}
+
+.btn-primary {
+  background-color: var(--bg-button-primary);
+  border: 1px solid var(--border-button-primary);
+  color: var(--text-main);
+}
+
+.btn-primary:hover, .btn-primary:active {
+  background-color: var(--bg-button-primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--bg-button-secondary);
+  border: 1px solid var(--border-button-secondary);
+  color: var(--text-main);
+}
+
+.btn-secondary:hover, .btn-secondary:active {
+  background-color: var(--bg-button-secondary-hover);
+}
+
+.button-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 20px;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Clinic Cards (Screens 1 & 2)
+   -------------------------------------------------------------------------- */
+.clinic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.clinic-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-box);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.clinic-card.clickable {
+  cursor: pointer;
+}
+
+.clinic-card.clickable:hover {
+  background-color: #fafafa;
+  border-color: #999999;
+}
+
+.card-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.locality-badge {
+  background-color: #f0f4f8;
+  color: #1a4f78;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 2px;
+  border: 1px solid #d2e1ed;
+}
+
+.demo-tag-subtle {
+  font-size: 10.5px;
+  color: #8c6000;
+  background-color: #fff6db;
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.clinic-card-header {
+  margin-bottom: 12px;
+}
+
+.clinic-card-title {
+  font-size: 17.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.clinic-card-address {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.clinic-card-wait-section {
+  margin-bottom: 14px;
+}
+
+.wait-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.wait-time-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* --------------------------------------------------------------------------
+   Highlighted Waiting Time Box (Screens 3 & 4)
+   -------------------------------------------------------------------------- */
+.waiting-status-box {
+  background-color: var(--bg-gray-box);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-box);
+  padding: 16px 16px;
+  margin: 14px 0 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.waiting-status-box .wait-label {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.waiting-status-box .wait-large-time {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+  margin-bottom: 14px;
+}
+
+.waiting-status-box .row-patients {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14.5px;
+  color: var(--text-main);
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.waiting-status-box .row-patients .count {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.waiting-status-box .last-updated-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  width: 100%;
+}
+
+.btn-refresh-pill {
+  background: none;
+  border: none;
+  color: #005bb5;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 4px;
+  text-decoration: underline;
+  font-family: inherit;
+}
+
+.btn-refresh-pill:hover {
+  color: #003d7a;
+}
+
+/* --------------------------------------------------------------------------
+   Details Sections (Screen 3)
+   -------------------------------------------------------------------------- */
+.details-section {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.details-section .detail-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 3px;
+}
+
+.details-section .detail-value {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   Empty Results State
+   -------------------------------------------------------------------------- */
+.empty-state {
+  padding: 24px 16px;
+  text-align: center;
+  background-color: var(--bg-gray-box);
+  border: 1px dashed var(--border-card);
+  border-radius: var(--radius-box);
+  margin-bottom: 20px;
+}
+
+.empty-state-title {
+  color: var(--text-main);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.empty-state-hint {
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.empty-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}

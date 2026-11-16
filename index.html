@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WaitWise - Clinic Waiting Times</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Main Responsive Application Container -->
+  <main class="app-container" role="main">
+
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+      <a href="#" class="brand-logo" id="brand-logo" title="WaitWise Home">WaitWise</a>
+    </header>
+
+    <!-- Clear Sample Data Notice Banner -->
+    <aside class="demo-banner" aria-label="Demonstration Notice">
+      <span class="tag">Demo Mode</span>
+      <span>Sample clinic data for demonstration only</span>
+    </aside>
+
+    <!-- ======================================================================
+         SCREEN 1: Home / Find a Clinic
+         ====================================================================== -->
+    <section id="screen-home" class="screen active" aria-labelledby="home-title">
+      <h1 id="home-title" class="screen-title">Find a Clinic</h1>
+      <p class="screen-subtitle">Find a nearby clinic and check the estimated wait before you go.</p>
+
+      <!-- Search Form -->
+      <form class="search-form" id="search-form" onsubmit="return false;">
+        <label for="search-input" class="visually-hidden" style="display:none;">Search clinics</label>
+        <div class="search-input-wrapper">
+          <input 
+            type="text" 
+            id="search-input" 
+            class="search-input" 
+            placeholder="Enter clinic name or location"
+            autocomplete="off"
+          >
+          <button type="button" id="btn-input-clear" class="btn-input-clear" title="Clear search" aria-label="Clear search" style="display: none;">✕</button>
+        </div>
+        <button type="submit" id="btn-search" class="btn btn-primary">Search</button>
+
+        <!-- Quick Locality Filter Chips (Jaipur Localities) -->
+        <div class="quick-locality-chips" aria-label="Popular Jaipur Localities">
+          <span class="chips-label">Popular:</span>
+          <button type="button" class="locality-chip" data-locality="Malviya Nagar">Malviya Nagar</button>
+          <button type="button" class="locality-chip" data-locality="Mansarovar">Mansarovar</button>
+          <button type="button" class="locality-chip" data-locality="Vaishali Nagar">Vaishali Nagar</button>
+          <button type="button" class="locality-chip" data-locality="Jagatpura">Jagatpura</button>
+          <button type="button" class="locality-chip" data-locality="C-Scheme">C-Scheme</button>
+        </div>
+      </form>
+
+      <!-- Nearby / Matching Clinics List -->
+      <div class="section-header-row">
+        <h2 id="home-clinics-heading" class="section-title">Nearby Clinics</h2>
+        <span id="home-clinics-count" class="results-badge" style="display: none;"></span>
+      </div>
+      <div id="nearby-clinics-list" class="clinic-list">
+        <!-- Rendered dynamically from sample data -->
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SCREEN 2: Search Results
+         ====================================================================== -->
+    <section id="screen-results" class="screen" aria-labelledby="results-title">
+      <h1 id="results-title" class="screen-title">Search Results</h1>
+      <p id="results-count" class="screen-subtitle">2 clinics found</p>
+
+      <div id="search-results-list" class="clinic-list">
+        <!-- Rendered dynamically based on search query -->
+      </div>
+
+      <div class="button-stack">
+        <button type="button" id="btn-results-back" class="btn btn-secondary">Back</button>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SCREEN 3: Clinic Details
+         ====================================================================== -->
+    <section id="screen-details" class="screen" aria-labelledby="details-clinic-name">
+      <h1 id="details-clinic-name" class="screen-title">Clinic Name</h1>
+      <p id="details-clinic-address" class="screen-subtitle" style="margin-bottom: 20px;">Clinic Address</p>
+
+      <div class="details-section">
+        <h2 class="detail-label">Clinic timings</h2>
+        <p id="details-timings" class="detail-value">Mon–Sat, 8:00 AM–6:00 PM</p>
+      </div>
+
+      <div class="details-section">
+        <h2 class="detail-label">Doctor availability</h2>
+        <p id="details-doctors" class="detail-value">2 general practitioners available today</p>
+      </div>
+
+      <!-- Estimated Waiting Time Card -->
+      <div class="waiting-status-box">
+        <span class="wait-label">Estimated waiting time</span>
+        <div id="details-wait-time" class="wait-large-time">25 min</div>
+        
+        <div class="row-patients">
+          <span>Patients ahead</span>
+          <span id="details-patients-count" class="count">6</span>
+        </div>
+
+        <div class="last-updated-row">
+          <span id="details-last-updated">Last updated: 10:30 AM</span>
+          <button type="button" class="btn-refresh-pill" id="btn-refresh-details" title="Simulate updating estimate">Refresh</button>
+        </div>
+      </div>
+
+      <div class="details-section">
+        <h2 class="detail-label" style="font-size: 18px; margin-bottom: 8px;">When you arrive</h2>
+        <p id="details-arrival-instructions" class="body-text">
+          Enter through the main entrance and check in at reception. Bring your ID and any relevant medical documents.
+        </p>
+      </div>
+
+      <div class="button-stack">
+        <button type="button" id="btn-check-queue" class="btn btn-primary">Check Queue Status</button>
+        <button type="button" id="btn-details-back" class="btn btn-secondary">Back</button>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SCREEN 4: Queue Status
+         ====================================================================== -->
+    <section id="screen-queue" class="screen" aria-labelledby="queue-title">
+      <h1 id="queue-title" class="screen-title">Queue Status</h1>
+      <h2 id="queue-clinic-name" class="sub-heading" style="font-size: 18px;">Clinic Name</h2>
+      <p id="queue-clinic-address" class="body-text" style="margin-bottom: 16px;">Clinic Address</p>
+
+      <!-- Estimated Waiting Time Card -->
+      <div class="waiting-status-box">
+        <span class="wait-label">Estimated waiting time</span>
+        <div id="queue-wait-time" class="wait-large-time">25 min</div>
+
+        <div class="row-patients">
+          <span>Patients ahead</span>
+          <span id="queue-patients-count" class="count">6</span>
+        </div>
+
+        <div class="last-updated-row">
+          <span id="queue-last-updated">Last updated: 10:30 AM</span>
+          <button type="button" class="btn-refresh-pill" id="btn-refresh-queue" title="Simulate updating estimate">Refresh</button>
+        </div>
+      </div>
+
+      <div class="details-section">
+        <h2 class="detail-label" style="font-size: 18px; margin-bottom: 8px;">How to check in</h2>
+        <p id="queue-check-in-instructions" class="body-text" style="margin-bottom: 14px;">
+          Go to reception when you arrive. Give your name and show your ID to join the queue, then wait in the seating area until you are called.
+        </p>
+        <p class="info-note">
+          Waiting times are estimates and may change. Viewing this screen does not check you in.
+        </p>
+      </div>
+
+      <div class="button-stack">
+        <button type="button" id="btn-queue-home" class="btn btn-primary">Back to Home</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Load Sample Data and Application Script -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
